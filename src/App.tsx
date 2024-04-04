@@ -2,10 +2,14 @@ import React from 'react';
 import logo from './logo.svg';
 import { useState, useEffect } from 'react';
 import './App.css';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
 
 const App = (): JSX.Element => {
   type Pokemon = {
-    name:string,
+    name: string,
     url: string,
   }
 
@@ -21,15 +25,22 @@ const App = (): JSX.Element => {
 
   console.log(pokemon[0]);
   return (
-    <div className="App">
-      {pokemon.map(
+    <Box sx={{ flexGrow: 6 }}
+      alignItems="center"
+      justifyContent="center">
+      <Grid container rowSpacing={5} columnSpacing={{ xs: 7, sm: 7, md: 3 }}>
+        {pokemon.map(
           (data) => (
-              <div>
-                {data.name.toString()}
-                {data.url.toString()}
-              </div>
+            <Grid item xs={2} sm={4} md={4}>
+              <Card>
+                <CardContent style={{ display:'flex', justifyContent:'center' }}>
+                  {data.name}
+                </CardContent>
+              </Card>
+            </Grid>
           ))}
-    </div>
+      </Grid>
+    </Box>
   );
 }
 
