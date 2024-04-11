@@ -6,6 +6,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
+import { Button } from '@mui/material';
 
 const App = (): JSX.Element => {
   type Pokemon = {
@@ -14,6 +15,7 @@ const App = (): JSX.Element => {
   }
 
   const [pokemon, setPokemon] = useState<Pokemon[]>([]);
+  const [squad, setSquad] = useState<Pokemon[]>([]);
 
   useEffect(() => {
     fetch('https://pokeapi.co/api/v2/pokemon?limit=151')
@@ -23,19 +25,76 @@ const App = (): JSX.Element => {
       });
   }, []);
 
-  console.log(pokemon[0]);
   return (
     <Box sx={{ flexGrow: 6 }}
       alignItems="center"
       justifyContent="center">
-      <Grid container rowSpacing={5} columnSpacing={{ xs: 7, sm: 7, md: 3 }}>
+      <Grid container rowSpacing={5} columnSpacing={{ xs: 7, sm: 7, md: 3 }}> 
+      {squad.map(
+          (data) => (
+            <Grid item xs={2} sm={4} md={4}>
+              <Card>
+                <CardContent style={{ display: 'flex', justifyContent: 'center' }}>
+                  {data.name}
+                </CardContent>
+                <Button
+                  onClick={() => {
+                    for (let i = 0; i < pokemon.length; i ++) {
+                      if (pokemon[i].name == data.name) {
+                        return;
+                      }
+                    }
+                    setPokemon([data, ...pokemon]);
+                
+                    let filteredSquad: Pokemon[] = [];
+                    for (let i = 0; i < squad.length; i++) {
+                      if (squad[i].name != data.name) {
+                        filteredSquad.push(squad[i]);
+                      }
+                    }
+                    setSquad(filteredSquad);
+                    console.log("SQUAAAD" + squad);
+                    
+
+                  }}
+                >
+                  Remove From Squad
+                </Button>
+
+              </Card>
+            </Grid>
+          ))}
+
+
         {pokemon.map(
           (data) => (
             <Grid item xs={2} sm={4} md={4}>
               <Card>
-                <CardContent style={{ display:'flex', justifyContent:'center' }}>
+                <CardContent style={{ display: 'flex', justifyContent: 'center' }}>
                   {data.name}
                 </CardContent>
+                <Button
+                  onClick={() => {
+                    for (let i = 0; i < squad.length; i ++) {
+                      if (squad[i].name == data.name) {
+                        return;
+                      }
+                    }
+                    setSquad([data, ...squad]);
+
+                    let filteredPokemon: Pokemon[] = [];
+                    for (let i = 0; i < pokemon.length; i++) {
+                      if (pokemon[i].name != data.name) {
+                        filteredPokemon.push(pokemon[i]);
+                      }
+                    }
+                    setPokemon(filteredPokemon);
+                    
+                  }}
+                >
+                  Add to Squad
+                </Button>
+
               </Card>
             </Grid>
           ))}
