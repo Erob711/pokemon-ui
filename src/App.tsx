@@ -16,6 +16,7 @@ const App = (): JSX.Element => {
 
   const [pokemon, setPokemon] = useState<Pokemon[]>([]);
   const [squad, setSquad] = useState<Pokemon[]>([]);
+  const squadLimit = 6;
 
   useEffect(() => {
     fetch('https://pokeapi.co/api/v2/pokemon?limit=151')
@@ -29,23 +30,38 @@ const App = (): JSX.Element => {
     <Box sx={{ flexGrow: 6 }}
       alignItems="center"
       justifyContent="center">
-      <Grid container rowSpacing={5} columnSpacing={{ xs: 7, sm: 7, md: 3 }}> 
-      {squad.map(
+      <Grid container rowSpacing={5} columnSpacing={{ xs: 7, sm: 7, md: 3 }}>
+        {/* Only let them squad if over 2 select pokemon */}
+        {
+          (squad.length >= 2) &&
+          <Button style={{
+            margin: '3rem',
+            border: '2px solid #49A497'
+          }}>
+            Squad Up!
+          </Button>
+        }
+        {squad.map(
           (data) => (
             <Grid item xs={2} sm={4} md={4}>
               <Card>
-                <CardContent style={{ display: 'flex', justifyContent: 'center' }}>
+                <CardContent style=
+                  {{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    backgroundColor: '#AED4CF'
+                  }}>
                   {data.name}
                 </CardContent>
                 <Button
                   onClick={() => {
-                    for (let i = 0; i < pokemon.length; i ++) {
+                    for (let i = 0; i < pokemon.length; i++) {
                       if (pokemon[i].name == data.name) {
                         return;
                       }
                     }
                     setPokemon([data, ...pokemon]);
-                
+
                     let filteredSquad: Pokemon[] = [];
                     for (let i = 0; i < squad.length; i++) {
                       if (squad[i].name != data.name) {
@@ -53,18 +69,13 @@ const App = (): JSX.Element => {
                       }
                     }
                     setSquad(filteredSquad);
-                    console.log("SQUAAAD" + squad);
-                    
-
                   }}
                 >
                   Remove From Squad
                 </Button>
-
               </Card>
             </Grid>
           ))}
-
 
         {pokemon.map(
           (data) => (
@@ -75,7 +86,10 @@ const App = (): JSX.Element => {
                 </CardContent>
                 <Button
                   onClick={() => {
-                    for (let i = 0; i < squad.length; i ++) {
+                    if (squad.length == squadLimit) {
+                      return;
+                    }
+                    for (let i = 0; i < squad.length; i++) {
                       if (squad[i].name == data.name) {
                         return;
                       }
@@ -89,12 +103,10 @@ const App = (): JSX.Element => {
                       }
                     }
                     setPokemon(filteredPokemon);
-                    
                   }}
                 >
                   Add to Squad
                 </Button>
-
               </Card>
             </Grid>
           ))}
