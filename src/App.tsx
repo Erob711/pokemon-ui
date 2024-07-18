@@ -1,5 +1,3 @@
-import React from 'react';
-import logo from './logo.svg';
 import { useState, useEffect } from 'react';
 import './App.css';
 import Card from '@mui/material/Card';
@@ -56,7 +54,7 @@ const App = (): JSX.Element => {
                 <Button
                   onClick={() => {
                     for (let i = 0; i < pokemon.length; i++) {
-                      if (pokemon[i].name == data.name) {
+                      if (pokemon[i].name === data.name) {
                         return;
                       }
                     }
@@ -64,7 +62,7 @@ const App = (): JSX.Element => {
 
                     let filteredSquad: Pokemon[] = [];
                     for (let i = 0; i < squad.length; i++) {
-                      if (squad[i].name != data.name) {
+                      if (squad[i].name !== data.name) {
                         filteredSquad.push(squad[i]);
                       }
                     }
@@ -86,11 +84,11 @@ const App = (): JSX.Element => {
                 </CardContent>
                 <Button
                   onClick={() => {
-                    if (squad.length == squadLimit) {
+                    if (squad.length === squadLimit) {
                       return;
                     }
                     for (let i = 0; i < squad.length; i++) {
-                      if (squad[i].name == data.name) {
+                      if (squad[i].name === data.name) {
                         return;
                       }
                     }
@@ -98,7 +96,7 @@ const App = (): JSX.Element => {
 
                     let filteredPokemon: Pokemon[] = [];
                     for (let i = 0; i < pokemon.length; i++) {
-                      if (pokemon[i].name != data.name) {
+                      if (pokemon[i].name !== data.name) {
                         filteredPokemon.push(pokemon[i]);
                       }
                     }
