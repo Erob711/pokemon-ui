@@ -7,5 +7,5 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
-          ref: @{{ github.head_ref }}
+          ref: ${{ github.head_ref }}
       - uses: swimmio/swimm-verify-action@v1.2
