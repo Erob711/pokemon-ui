@@ -9,7 +9,7 @@ This doc is attached to this code
 
 ```css
 .App-header {
-  background-color: #282c34;
+  background-color: #282c35;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
