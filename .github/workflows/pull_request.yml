@@ -21,6 +21,6 @@ jobs:
       fail-fast: false
       matrix:
         node-version: [18.x, 20.x]
-        
+
     steps:
-    - run: yarn test
+    - run: yarn run test
