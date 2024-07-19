@@ -1,0 +1,8 @@
+name: Pull Request Run
+run-name: ${{ github.actor }} thanks you for you Submission! 
+on: [pull_request]
+jobs:
+  Message-On-PullRequest:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
