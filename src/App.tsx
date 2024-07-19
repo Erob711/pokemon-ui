@@ -27,6 +27,7 @@ const App = (): JSX.Element => {
   return (
     <Box sx={{ flexGrow: 6 }}
       alignItems="center"
+      title="wrapper"
       justifyContent="center">
       <Grid container rowSpacing={5} columnSpacing={{ xs: 7, sm: 7, md: 3 }}>
         {/* Only let them squad if over 2 select pokemon */}
