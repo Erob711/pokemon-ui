@@ -13,8 +13,12 @@
   }
 }
 
+
+   /* demo 
+   change background-color to 2B336A
+   */
 .App-header {
-  background-color: #282c34;
+  background-color: #282c35;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
