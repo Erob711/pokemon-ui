@@ -7,5 +7,5 @@ test('renders the App', () => {
   const appWrapper = screen.getByTitle("wrapper");
 
   // demo: change to have appWrapper (not) be in the document
-  expect(appWrapper).toBeInTheDocument();
+  expect(appWrapper).not.toBeInTheDocument();
 });
