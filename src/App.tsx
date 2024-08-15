@@ -48,7 +48,7 @@ const App = (): JSX.Element => {
                   {{
                     display: 'flex',
                     justifyContent: 'center',
-                    backgroundColor: '#DE6D6D'
+                    backgroundColor: '#6B8ED4'
                   }}>
                   {data.name}
                 </CardContent>
